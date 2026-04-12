@@ -58,6 +58,7 @@ The user needs creative exploration before anything else.
    **Concept phase:**
    - `/brainstorm open` — discover your game concept
    - `/setup-engine` — configure the engine (brainstorm will recommend one)
+   - `/prototype` — throwaway concept build: validate the core idea is fun before designing (1–3 days)
    - `/art-bible` — define visual identity (uses the Visual Identity Anchor brainstorm produces)
    - `/map-systems` — decompose the concept into systems
    - `/design-system` — author a GDD for each MVP system
@@ -70,7 +71,7 @@ The user needs creative exploration before anything else.
    - `/architecture-review` — validate architecture coverage
    **Pre-Production phase:**
    - `/ux-design` — author UX specs for key screens (main menu, HUD, core interactions)
-   - `/prototype` — build a throwaway prototype to validate the core mechanic
+   - `/vertical-slice` — production-quality end-to-end build to validate the full game loop
    - `/playtest-report (×1+)` — document each vertical slice playtest session
    - `/create-epics` — map systems to epics
    - `/create-stories` — break epics into implementable stories
@@ -86,6 +87,7 @@ The user needs creative exploration before anything else.
    **Concept phase:**
    - `/brainstorm [hint]` — develop the idea into a full concept
    - `/setup-engine` — configure the engine
+   - `/prototype` — throwaway concept build: validate the core idea is fun before designing (1–3 days)
    - `/art-bible` — define visual identity (uses the Visual Identity Anchor brainstorm produces)
    - `/map-systems` — decompose the concept into systems
    - `/design-system` — author a GDD for each MVP system
@@ -98,7 +100,7 @@ The user needs creative exploration before anything else.
    - `/architecture-review` — validate architecture coverage
    **Pre-Production phase:**
    - `/ux-design` — author UX specs for key screens (main menu, HUD, core interactions)
-   - `/prototype` — build a throwaway prototype to validate the core mechanic
+   - `/vertical-slice` — production-quality end-to-end build to validate the full game loop
    - `/playtest-report (×1+)` — document each vertical slice playtest session
    - `/create-epics` — map systems to epics
    - `/create-stories` — break epics into implementable stories
@@ -116,6 +118,7 @@ The user needs creative exploration before anything else.
 3. Show the recommended path:
    **Concept phase:**
    - `/brainstorm` or `/setup-engine` — (their pick from step 2)
+   - `/prototype` — throwaway concept build: validate the core idea is fun before designing (1–3 days)
    - `/art-bible` — define visual identity (after brainstorm if run, or after concept doc exists)
    - `/design-review` — validate the concept doc
    - `/map-systems` — decompose the concept into individual systems
@@ -129,7 +132,7 @@ The user needs creative exploration before anything else.
    - `/architecture-review` — validate architecture coverage
    **Pre-Production phase:**
    - `/ux-design` — author UX specs for key screens (main menu, HUD, core interactions)
-   - `/prototype` — build a throwaway prototype to validate the core mechanic
+   - `/vertical-slice` — production-quality end-to-end build to validate the full game loop
    - `/playtest-report (×1+)` — document each vertical slice playtest session
    - `/create-epics` — map systems to epics
    - `/create-stories` — break epics into implementable stories

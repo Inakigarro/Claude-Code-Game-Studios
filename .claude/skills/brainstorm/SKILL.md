@@ -317,9 +317,9 @@ If yes, generate the document using the template at `.claude/docs/templates/game
    6. "Plan the technical architecture with `/create-architecture` — produces the master architecture blueprint and Required ADR list"
    7. "Record key architectural decisions with `/architecture-decision (×N)` — write one ADR per decision in the Required ADR list from `/create-architecture`"
    8. "Validate readiness to advance with `/gate-check` — phase gate before committing to production"
-   9. "Prototype the riskiest system with `/prototype [core-mechanic]` — validate the core loop before full implementation"
-   10. "Run `/playtest-report` after the prototype to validate the core hypothesis"
-   11. "If validated, plan the first sprint with `/sprint-plan new`"
+   9. "Run `/prototype [core-mechanic]` immediately after engine setup — validate the core idea is fun before writing any GDDs (1–3 days throwaway code)"
+   10. "If prototype PROCEEDS: design systems with `/map-systems` then `/design-system`, using prototype learnings to inform your GDDs"
+   11. "After full design and architecture, build the `/vertical-slice` to validate production readiness before committing to sprints"
 
 7. **Output a summary** with the chosen concept's elevator pitch, pillars,
    primary player type, engine recommendation, biggest risk, and file path.

@@ -121,7 +121,8 @@ Ask yourself: "What department would handle this in a real studio?"
 | `/changelog` | Generates changelog from git history |
 | `/patch-notes` | Generate player-facing patch notes |
 | `/hotfix` | Emergency fix with audit trail |
-| `/prototype` | Scaffolds a throwaway prototype |
+| `/prototype` | Concept prototype — validate core idea before writing GDDs (Phase 1) |
+| `/vertical-slice` | Production-quality end-to-end build — validate full game loop (Phase 4) |
 | `/localize` | Localization scan, extract, validate |
 | `/team-combat` | Orchestrate full combat team pipeline |
 | `/team-narrative` | Orchestrate full narrative team pipeline |
@@ -219,9 +220,9 @@ If you already know what you need, jump directly to the relevant path:
 4. **Decompose into systems** — Run `/map-systems` to map all systems and dependencies
 5. **Design each system** — Run `/design-system [system-name]` (or `/map-systems next`)
    to write GDDs in dependency order
-6. **Test the core loop** — Run `/prototype [core-mechanic]`
-7. **Playtest it** — Run `/playtest-report` to validate the hypothesis
-8. **Plan the first sprint** — Run `/sprint-plan new`
+6. **Validate the concept** — Run `/prototype [core-mechanic]` (1–3 days — before writing GDDs)
+7. **Design each system** — Run `/design-system [system-name]` to write GDDs, informed by prototype learnings
+8. **Plan the first sprint** — After architecture and `/vertical-slice`, run `/sprint-plan new`
 9. Start building
 
 ### Path B: "I know what I want to build"

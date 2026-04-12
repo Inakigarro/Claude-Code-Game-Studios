@@ -66,6 +66,11 @@ Note: in `solo` mode, director spawns (CD-PHASE-GATE, TD-PHASE-GATE, PR-PHASE-GA
 - [ ] Game pillars defined (in concept doc or `design/gdd/game-pillars.md`)
 - [ ] Visual Identity Anchor section exists in `design/gdd/game-concept.md` (from brainstorm Phase 4 art-director output)
 
+**Recommended (not blocking):**
+- [ ] Concept prototype exists in `prototypes/` with a REPORT.md showing PROCEED verdict
+      (`/prototype [core-mechanic]`) — skipping this means GDDs may be written for an
+      idea that hasn't been played. Acceptable if the concept is proven by other means.
+
 **Quality Checks:**
 - [ ] Game concept has been reviewed (`/design-review` verdict not MAJOR REVISION NEEDED)
 - [ ] Core loop is described and understood
@@ -139,7 +144,7 @@ A depends on B). If any cycle is detected (e.g. A→B→A, or A→B→C→A):
 ### Gate: Pre-Production → Production
 
 **Required Artifacts:**
-- [ ] At least 1 prototype in `prototypes/` with a README
+- [ ] Vertical slice exists in `prototypes/` with a REPORT.md (run `/vertical-slice`)
 - [ ] First sprint plan exists in `production/sprints/`
 - [ ] Art bible is complete (all 9 sections) and AD-ART-BIBLE sign-off verdict is recorded in `design/art/art-bible.md`
 - [ ] Character visual profiles exist for key characters referenced in narrative docs
@@ -153,7 +158,7 @@ A depends on B). If any cycle is detected (e.g. A→B→A, or A→B→C→A):
       `/create-epics layer: core` to create them, then `/create-stories [epic-slug]`
       for each epic)
 - [ ] Vertical Slice build exists and is playable (not just scope-defined)
-- [ ] Vertical Slice has been playtested with at least 3 sessions (internal OK)
+- [ ] Vertical Slice has been playtested with at least 1 documented session (internal OK; 3+ recommended before committing the full team to Production)
 - [ ] Vertical Slice playtest report exists at `production/playtests/` or equivalent
 - [ ] UX specs exist for key screens: main menu, core gameplay HUD (at `design/ux/`), pause menu
 - [ ] HUD design document exists at `design/ux/hud.md` (if game has in-game HUD)
@@ -441,10 +446,26 @@ Gate passed. What would you like to do next?
 For **technical-setup PASS**:
 ```
 Gate passed. What would you like to do next?
-[A] Start Pre-Production — begin prototyping the Vertical Slice
-[B] Write more ADRs first — run /architecture-decision [next-system]
-[C] Stop here for this session
+[A] Run /create-control-manifest — generate the layer rules manifest from your Accepted ADRs (do this first)
+[B] Run /vertical-slice — build the Vertical Slice (do this before writing epics — validate fun first)
+[C] Write more ADRs first — run /architecture-decision [next-system]
+[D] Stop here for this session
 ```
+
+> **Note for technical-setup PASS**: The Pre-Production sequence is deliberately ordered
+> to validate fun before committing to detailed planning:
+>
+> 1. `/create-control-manifest` — extract technical rules from Accepted ADRs (required before epics)
+> 2. `/vertical-slice` — build the Vertical Slice **FIRST**, before writing epics or stories
+> 3. Playtest → `/playtest-report` — at least 1 session required to pass the Pre-Production gate; 3+ recommended before committing the full team
+> 4. `/ux-design [screen]` — UX specs for main menu, core HUD, pause menu (if not done)
+> 5. `/create-epics layer:foundation` then `/create-epics layer:core` — plan after fun is validated
+> 6. `/create-stories [epic-slug]` for each epic
+> 7. `/sprint-plan`
+>
+> **Why prototype before epics?** If the prototype reveals the core loop needs to change,
+> epics written before that discovery will be partially wrong. Validate fun cheaply first,
+> then plan in detail. This is the #1 lesson from GDC postmortem data.
 
 For all other gates, offer the two most logical next steps for that phase plus "Stop here".
 
@@ -462,13 +483,7 @@ Based on the verdict, suggest specific next steps:
 - **Small design change needed?** → `/quick-design` for changes under ~4 hours (bypasses full GDD pipeline)
 - **No UX specs?** → `/ux-design [screen name]` to author specs, or `/team-ui [feature]` for full pipeline
 - **UX specs not reviewed?** → `/ux-review [file]` or `/ux-review all` to validate
-- **No accessibility requirements doc?** → Use `AskUserQuestion` to offer to create it now:
-  - Prompt: "The gate requires `design/accessibility-requirements.md`. Shall I create it from the template?"
-  - Options: `Create it now — I'll choose an accessibility tier`, `I'll create it myself`, `Skip for now`
-  - If "Create it now": use a second `AskUserQuestion` to ask for the tier:
-    - Prompt: "Which accessibility tier fits this project?"
-    - Options: `Basic — remapping + subtitles only (lowest effort)`, `Standard — Basic + colorblind modes + scalable UI`, `Comprehensive — Standard + motor accessibility + full settings menu`, `Exemplary — Comprehensive + external audit + full customization`
-  - Then write `design/accessibility-requirements.md` using the template at `.claude/docs/templates/accessibility-requirements.md`, filling in the chosen tier. Confirm: "May I write `design/accessibility-requirements.md`?"
+- **No accessibility requirements doc?** → run `/ux-design` which creates both `design/accessibility-requirements.md` and `design/ux/interaction-patterns.md` in one step
 - **No interaction pattern library?** → `/ux-design patterns` to initialize it
 - **GDDs not cross-reviewed?** → `/review-all-gdds` (run after all MVP GDDs are individually approved)
 - **Cross-GDD consistency issues?** → fix flagged GDDs, then re-run `/review-all-gdds`
@@ -484,7 +499,7 @@ Based on the verdict, suggest specific next steps:
 - **Stories not implementation-ready?** → `/story-readiness` to validate stories before developers pick them up
 - **Tests failing?** → delegate to `lead-programmer` or `qa-tester`
 - **No playtest data?** → `/playtest-report`
-- **Less than 3 playtest sessions?** → Run more playtests before advancing. Use `/playtest-report` to structure findings.
+- **No playtest sessions beyond the minimum?** → Additional sessions give more reliable signal. 3+ total is recommended before committing the full team. Use `/playtest-report` to structure findings.
 - **No Difficulty Curve doc?** → Consider creating one at `design/difficulty-curve.md` before polish
 - **No player journey document?** → create `design/player-journey.md` using the player journey template
 - **Need a quick sprint check?** → `/sprint-status` for current sprint progress snapshot
@@ -503,6 +518,10 @@ This skill follows the collaborative design principle:
 3. **Present findings**: Show the full checklist with status
 4. **User decides**: The verdict is a recommendation — the user makes the final call
 5. **Get approval**: "May I write this gate check report to production/gate-checks/?"
+6. **Never auto-fix**: If required artifacts are missing, report the FAIL verdict and
+   name the skill to run (e.g. "run `/test-setup`"). Do NOT create missing files or
+   re-run the gate automatically. Creating files to manufacture a PASS defeats the
+   gate's purpose.
 
 **Never** block a user from advancing — the verdict is advisory. Document the risks
 and let the user decide whether to proceed despite concerns.

@@ -12,6 +12,9 @@ PHASE 1: CONCEPT
   /start ──────────────────────────────────────────────────────► routes to A/B/C/D
   /brainstorm ──────────────────────────────────────────────────► design/gdd/game-concept.md
   /setup-engine ────────────────────────────────────────────────► CLAUDE.md + technical-preferences.md
+  /prototype [core-mechanic] ───────────────────────────────────► prototypes/[name]-concept/REPORT.md
+        │ PROCEED                                                  (validate idea BEFORE writing GDDs)
+        ▼
   /design-review [game-concept.md] ────────────────────────────► concept validated
   /gate-check ─────────────────────────────────────────────────► PASS → advance to systems-design
         │
@@ -45,11 +48,13 @@ PHASE 4: PRE-PRODUCTION
   /test-setup ─────────────────────────────────────────────────► test framework + CI/CD pipeline
   /test-helpers ───────────────────────────────────────────────► tests/helpers/[engine-specific].gd
 
-  [Stories + prototype]
+  [Vertical slice — before epics, validate full game loop]
+  /vertical-slice ─────────────────────────────────────────────► prototypes/[name]-vertical-slice/REPORT.md
+  /playtest-report ────────────────────────────────────────────► production/playtests/
+
+  [Stories + sprint plan — only after vertical slice PROCEEDS]
   /create-epics [layer] ───────────────────────────────────────► production/epics/*/EPIC.md
   /create-stories [epic-slug] ─────────────────────────────────► production/epics/*/story-*.md
-  /prototype [core-mechanic] ──────────────────────────────────► prototypes/[name]/
-  /playtest-report ────────────────────────────────────────────► tests/playtest/vertical-slice.md
   /sprint-plan new ────────────────────────────────────────────► production/sprints/sprint-01.md
   /gate-check ─────────────────────────────────────────────────► PASS → advance to production
         │

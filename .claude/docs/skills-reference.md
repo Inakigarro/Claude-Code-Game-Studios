@@ -106,7 +106,8 @@
 
 | Command | Purpose |
 |---------|---------|
-| `/prototype` | Rapid throwaway prototype to validate a mechanic (relaxed standards, isolated worktree) |
+| `/prototype` | Concept prototype — throwaway build right after brainstorm to validate core idea (Phase 1) |
+| `/vertical-slice` | Pre-Production validation — production-quality end-to-end build before committing to Production (Phase 4) |
 | `/onboard` | Generate contextual onboarding document for a new contributor or agent |
 | `/localize` | Localization workflow: string extraction, validation, translation readiness |
 
