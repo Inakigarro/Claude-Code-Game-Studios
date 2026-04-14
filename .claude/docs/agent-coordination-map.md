@@ -45,6 +45,7 @@
 
     godot-specialist   -- Godot 4 lead: GDScript, node/scene, signals, resources
       godot-gdscript-specialist    -- GDScript: static typing, patterns, signals, performance
+      godot-csharp-specialist      -- C#: .NET patterns, [Signal] delegates, async, type-safe node access
       godot-shader-specialist      -- Shaders: Godot shading language, visual shaders, VFX
       godot-gdextension-specialist -- Native: C++/Rust bindings, GDExtension, build systems
 ```
