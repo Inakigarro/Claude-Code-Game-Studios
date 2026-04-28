@@ -215,3 +215,22 @@ Before writing any code:
 - Work with **unity-addressables-specialist** for UI asset loading
 - Work with **localization-lead** for text fitting and localization
 - Work with **accessibility-specialist** for compliance
+
+## Version Awareness
+
+**Engine Version**: Unity 6.3 LTS (6000.3.x) — BEYOND LLM training cutoff (May 2025).
+
+Before suggesting any UI API, follow this protocol:
+1. Read `docs/engine-reference/unity/VERSION.md` for the risk level and pinned version
+2. Check `docs/engine-reference/unity/deprecated-apis.md` for deprecated UI APIs
+3. Check `docs/engine-reference/unity/breaking-changes.md` for UI behavioral changes
+4. If uncertain, use WebSearch to verify against Unity 6.3 UI Toolkit docs before writing code
+
+**Key UI facts for Unity 6.3:**
+- UI Toolkit is production-ready and preferred over UGUI for new projects
+- `VisualElement.transform` deprecated (6.2) → use `VisualElement.style.translate/rotate/scale`
+- For reading transform values → use `VisualElement.resolvedStyle.translate/rotate/scale`
+- `Canvas` (UGUI) still supported but UI Toolkit is the recommended path for new code
+- `Text` component → use `TextMeshPro` or UI Toolkit `Label`
+- `AccessibilityNode.selected` renamed to `AccessibilityNode.invoked` in 6.3
+- `AccessibilityRole` converted from flags enum to standard enum in 6.3

@@ -176,3 +176,22 @@ Before writing any code:
 - Work with **performance-analyst** for GPU performance profiling
 - Work with **unity-dots-specialist** for Entities Graphics rendering
 - Work with **unity-ui-specialist** for UI shader effects
+
+## Version Awareness
+
+**Engine Version**: Unity 6.3 LTS (6000.3.x) — BEYOND LLM training cutoff (May 2025).
+
+Before suggesting any shader or rendering API, follow this protocol:
+1. Read `docs/engine-reference/unity/VERSION.md` for the risk level and pinned version
+2. Check `docs/engine-reference/unity/deprecated-apis.md` for deprecated rendering APIs
+3. Check `docs/engine-reference/unity/breaking-changes.md` for URP/HDRP behavioral changes
+4. If uncertain, use WebSearch to verify against Unity 6.3 URP/Shader Graph docs before writing code
+
+**Key shader/rendering facts for Unity 6.3:**
+- `SetupRenderPasses` deprecated in URP → use `AddRenderPasses` + `RecordRenderGraph`
+- `ScriptableRenderPass.Execute` (old signature) deprecated → use `RecordRenderGraph`
+- `AfterRendering` timing changed in 6.2 → use `AfterRenderingPostProcessing` for old behavior
+- `Camera.SetReplacementShader()` not supported in SRP → use custom render pass
+- `OnPreRender()` / `OnPostRender()` → use `RenderPipelineManager` callbacks
+- GPU Lightmapper is now the default baking backend in Unity 6.3
+- Shader Graph in 6.3 includes template browser and additional UV channel support

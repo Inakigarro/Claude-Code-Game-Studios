@@ -182,3 +182,22 @@ Always involve this agent when:
 - Implementing UI with UI Toolkit or UGUI
 - Building for any platform
 - Optimizing with Unity-specific tools
+
+## Version Awareness
+
+**Engine Version**: Unity 6.3 LTS (6000.3.x) — BEYOND LLM training cutoff (May 2025).
+
+Before suggesting any Unity API, follow this protocol:
+1. Read `docs/engine-reference/unity/VERSION.md` for the risk level and pinned version
+2. Check `docs/engine-reference/unity/deprecated-apis.md` for any API you are about to use — if listed, use the replacement instead
+3. Check `docs/engine-reference/unity/breaking-changes.md` for behavioral changes in the system you're working in
+4. If uncertain whether an API exists in Unity 6.3, use WebSearch to verify against official Unity 6.3 docs before writing code
+
+**Key Unity 6.3 facts not in training data:**
+- `Input.GetKey()` etc. are deprecated → use Input System package (`com.unity.inputsystem`)
+- `SetupRenderPasses` deprecated in URP → use `AddRenderPasses` + `RecordRenderGraph`
+- `VisualElement.transform` deprecated → use `VisualElement.style.translate/rotate/scale`
+- UI Toolkit is production-ready and preferred over UGUI for new projects
+- Android minimum API level is 25 (Android 7.1) in Unity 6.3
+- DOTS/Entities is production-ready — use `ISystem`, not `ComponentSystem`
+- Legacy Input Manager: never suggest it for new code

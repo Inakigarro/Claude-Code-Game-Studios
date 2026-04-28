@@ -1,6 +1,6 @@
 # Unity 6.3 LTS — Breaking Changes
 
-**Last verified:** 2026-02-13
+**Last verified:** 2026-04-27
 
 This document tracks breaking API changes and behavioral differences between Unity 2022 LTS
 (likely in model training) and Unity 6.3 LTS (current version). Organized by risk level.
@@ -128,9 +128,60 @@ UGUI still works but UI Toolkit is recommended for new projects.
 
 ### Android
 - **Unity 6.0+**: Minimum API level raised to 24 (Android 7.0)
+- **Unity 6.3**: Minimum API level raised again to **25** (Android 7.1)
+- **Unity 6.3**: `PlayerSettings.Android.androidIsGame` obsoleted — use new App Category setting
+- **Unity 6.3**: Round and legacy icon support deprecated — use adaptive icons
 
 ### iOS
 - **Unity 6.0+**: Minimum deployment target raised to iOS 13
+
+---
+
+## Unity 6.2 — Additional Breaking Changes
+
+### URP AfterRendering Injection Point
+**Breaking Change:** `AfterRendering` now executes consistently after the final back buffer blit.
+Previously it could run before additional post-processing passes.
+
+**Migration:** Change event from `AfterRendering` to `AfterRenderingPostProcessing` to preserve previous behavior.
+
+### SetupRenderPasses API (URP)
+**Deprecation:** `SetupRenderPasses` in URP is deprecated and will be removed in a future release.
+
+```csharp
+// ❌ Deprecated (Unity 6.2+)
+public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData) { }
+
+// ✅ New: Use render graph system
+public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData) { }
+public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData) { }
+```
+
+### VisualElement.transform API
+**Deprecation:** `VisualElement.transform` is deprecated.
+
+```csharp
+// ❌ Deprecated (Unity 6.2+)
+element.transform.position = new Vector3(10, 20, 0);
+
+// ✅ For setting values
+element.style.translate = new Translate(10, 20);
+element.style.rotate = new Rotate(45);
+element.style.scale = new Scale(new Vector2(1.5f, 1.5f));
+
+// ✅ For reading values
+var pos = element.resolvedStyle.translate;
+```
+
+## Unity 6.3 — Additional Breaking Changes
+
+### Accessibility API
+**Breaking Change:** `AccessibilityRole` enum converted from flags enum to standard enum.
+**Deprecation:** `AccessibilityNode.selected` renamed to `AccessibilityNode.invoked`.
+
+### 2D Physics — Box2D v3
+A new low-level 2D physics API based on Box2D v3 is available at `UnityEngine.LowLevelPhysics2D`.
+Runs alongside the existing API but will eventually replace it.
 
 ---
 

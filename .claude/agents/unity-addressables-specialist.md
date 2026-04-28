@@ -163,3 +163,19 @@ handle.Completed += OnAssetLoaded;
 - Work with **devops-engineer** for CDN and content delivery pipeline
 - Work with **level-designer** for scene streaming boundaries
 - Work with **unity-ui-specialist** for UI asset loading patterns
+
+## Version Awareness
+
+**Engine Version**: Unity 6.3 LTS (6000.3.x) — BEYOND LLM training cutoff (May 2025).
+
+Before suggesting any Addressables or asset loading API, follow this protocol:
+1. Read `docs/engine-reference/unity/VERSION.md` for the risk level and pinned version
+2. Check `docs/engine-reference/unity/deprecated-apis.md` for deprecated asset APIs
+3. Check `docs/engine-reference/unity/breaking-changes.md` for Addressables behavioral changes
+4. If uncertain, use WebSearch to verify against Unity 6.3 Addressables docs before writing code
+
+**Key Addressables facts for Unity 6.3:**
+- Asset loading failures now throw exceptions by default (6.2+) — always use try/catch or TryLoad variants
+- `Resources.Load()` deprecated → use `Addressables.LoadAssetAsync<T>()`
+- Synchronous asset loading deprecated → always use async patterns with `await handle.Task`
+- Addressables is the recommended asset management system for all new projects

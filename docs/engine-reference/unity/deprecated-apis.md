@@ -1,6 +1,6 @@
 # Unity 6.3 LTS — Deprecated APIs
 
-**Last verified:** 2026-02-13
+**Last verified:** 2026-04-27
 
 Quick lookup table for deprecated APIs and their replacements.
 Format: **Don't use X** → **Use Y instead**
@@ -44,6 +44,32 @@ Format: **Don't use X** → **Use Y instead**
 | `ComponentDataFromEntity<T>` | `ComponentLookup<T>` | Entities 1.0+ rename |
 
 **Migration:** See Entities package migration guide. Major refactor required.
+
+---
+
+## UI Toolkit (Unity 6.2+)
+
+| Deprecated | Replacement | Notes |
+|------------|-------------|-------|
+| `VisualElement.transform` | `VisualElement.style.translate/rotate/scale` | For setting values |
+| `VisualElement.transform` (read) | `VisualElement.resolvedStyle.translate/rotate/scale` | For reading values |
+
+---
+
+## URP Renderer Features (Unity 6.2+)
+
+| Deprecated | Replacement | Notes |
+|------------|-------------|-------|
+| `SetupRenderPasses` | `AddRenderPasses` + `RecordRenderGraph` | Render graph system |
+| `ScriptableRenderPass.Execute` (old signature) | `RecordRenderGraph` | URP RenderGraph path |
+
+---
+
+## Accessibility (Unity 6.3)
+
+| Deprecated | Replacement | Notes |
+|------------|-------------|-------|
+| `AccessibilityNode.selected` | `AccessibilityNode.invoked` | Renamed in 6.3 |
 
 ---
 

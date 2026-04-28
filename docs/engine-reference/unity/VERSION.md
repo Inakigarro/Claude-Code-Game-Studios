@@ -3,10 +3,12 @@
 | Field | Value |
 |-------|-------|
 | **Engine Version** | Unity 6.3 LTS |
+| **Internal Build ID** | 6000.3.x |
 | **Release Date** | December 2025 |
-| **Project Pinned** | 2026-02-13 |
-| **Last Docs Verified** | 2026-02-13 |
+| **Project Pinned** | 2026-04-27 |
+| **Last Docs Verified** | 2026-04-27 |
 | **LLM Knowledge Cutoff** | May 2025 |
+| **Risk Level** | HIGH |
 
 ## Knowledge Gap Warning
 

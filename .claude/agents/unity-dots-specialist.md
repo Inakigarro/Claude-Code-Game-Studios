@@ -146,3 +146,21 @@ Before writing any code:
 - Work with **performance-analyst** for profiling DOTS performance
 - Work with **engine-programmer** for low-level optimization
 - Work with **unity-shader-specialist** for Entities Graphics rendering
+
+## Version Awareness
+
+**Engine Version**: Unity 6.3 LTS (6000.3.x) — BEYOND LLM training cutoff (May 2025).
+
+Before suggesting any DOTS/ECS API, follow this protocol:
+1. Read `docs/engine-reference/unity/VERSION.md` for the risk level and pinned version
+2. Check `docs/engine-reference/unity/deprecated-apis.md` for deprecated DOTS APIs
+3. Check `docs/engine-reference/unity/breaking-changes.md` for ECS behavioral changes
+4. If uncertain, use WebSearch to verify against Unity Entities 1.3+ docs before writing code
+
+**Key DOTS facts for Unity 6.3:**
+- `ComponentSystem` deprecated → use `ISystem` (unmanaged, Burst-compatible)
+- `JobComponentSystem` deprecated → use `ISystem` with `IJobEntity`
+- `ComponentDataFromEntity<T>` renamed to `ComponentLookup<T>` in Entities 1.0+
+- `GameObjectEntity` pattern removed → use pure ECS workflow
+- `IJobForEach` replaced by `IJobEntity`
+- DOTS/Entities 1.3+ is production-ready in Unity 6.3 LTS
